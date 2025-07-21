@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nexsora – Get Started</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/logo/favicon.ico" type="image/x-icon" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #d0e7f9; /* light gray text */
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Overlay to darken background image for readability */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(11, 18, 32, 0.7);
+      z-index: -1;
+    }
+
+    a {
+      color: #00d8ff; /* bright cyan */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #3eefff; /* lighter cyan */
+      text-decoration: underline;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #07101a, #142439);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 15px rgba(0, 216, 255, 0.3);
+    }
+    .logo img {
+      height: 40px;
+      filter: none; /* no glow */
+      user-select: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .logo img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Navigation */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      color: #a2bcd8;
+    }
+    nav ul li {
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.25rem 0;
+      transition: color 0.3s ease;
+      color: #739cc7;
+    }
+    nav ul li:hover {
+      color: #00d8ff;
+    }
+    nav ul li.active {
+      color: #00d8ff;
+      font-weight: 700;
+    }
+    nav ul li.active::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: #00d8ff;
+      bottom: -8px;
+      left: 0;
+      border-radius: 3px;
+      box-shadow: none; /* no glow */
+    }
+
+    /* Main content */
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem 2rem 3rem;
+      background: rgba(20, 36, 57, 0.85);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 216, 255, 0.15);
+      color: #a2bcd8;
+      animation: fadeInUp 1s ease forwards;
+      position: relative;
+      z-index: 10;
+    }
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: #00d8ff;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      user-select: none;
+      text-shadow: none;
+    }
+    p {
+      font-weight: 300;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #b0c9e7;
+    }
+
+    /* Get Started steps */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 2rem;
+    }
+    .step-card {
+      background: #1c2a44;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 216, 255, 0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      user-select: none;
+      text-align: center;
+      border: 1px solid #4ee3f1aa;
+    }
+    .step-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 36px rgba(0, 216, 255, 0.3);
+      border-color: #00d8ff;
+    }
+    .step-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #00d8ff;
+      margin-bottom: 0.5rem;
+      text-shadow: none;
+    }
+    .step-title {
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #4ee3f1;
+      text-shadow: none;
+    }
+    .step-desc {
+      font-weight: 300;
+      font-size: 1rem;
+      color: #b0c9e7;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      background: #07101a;
+      color: #6786a8;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      user-select: none;
+      font-size: 0.9rem;
+      box-shadow: inset 0 1px 5px #00d8ff44;
+      letter-spacing: 0.7px;
+      margin-top: 4rem;
+      position: relative;
+      z-index: 10;
+    }
+    footer a {
+      color: #00d8ff;
+    }
+    footer a:hover {
+      color: #3eefff;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background: #142439;
+        position: fixed;
+        top: 64px;
+        right: -100%;
+        width: 220px;
+        height: calc(100% - 64px);
+        padding: 2rem 1rem;
+        box-shadow: -2px 0 10px rgba(78, 227, 241, 0.25);
+        transition: right 0.3s ease;
+        z-index: 1001;
+      }
+      nav ul.open {
+        right: 0;
+      }
+      nav ul li {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+      }
+      .menu-toggle {
+        display: block;
+        font-size: 2rem;
+        color: #00d8ff;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+        z-index: 1002;
+      }
+      main {
+        margin: 2rem 1rem 3rem;
+        border-radius: 12px;
+        padding: 1.5rem;
+      }
+      .steps {
+        display: block;
+      }
+      .step-card {
+        width: 100% !important;
+        margin-bottom: 1.5rem;
+        transform: none !important;
+      }
+    }
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo" aria-label="Nexsora Logo">
+      <img src="Nexsora/templates/logo/nexsora-logo" alt="Nexsora Logo" />
+    </a>
+
+    <nav>
+      <ul id="nav-links">
+        <li class="active"><a href="index.html">Get Started</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="join-us.html">Join Us</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="collaboration.html">Collaboration</a></li>
+        <a href="about.html" class="btn">Learn More About Us</a>
+        <a href="services.html" class="btn">Explore Our Services</a>
+
+
+      </ul>
+    </nav>
+
+    <div class="menu-toggle" aria-label="Toggle Menu" role="button" tabindex="0">&#9776;</div>
+  </header>
+
+  <main>
+    <h1>Get Started with Nexsora</h1>
+    <p>Follow these simple steps to join the Nexsora platform and unlock the power of global digital collaboration.</p>
+
+    <section class="steps" aria-label="Steps to get started">
+      <article class="step-card" tabindex="0">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Create Your Account</h3>
+        <p class="step-desc">Sign up with your email to access personalized dashboards and exclusive resources.</p>
+      </article>
+      <article class="step-card" tabindex="0">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Explore Resources</h3>
+        <p class="step-desc">Browse tutorials, courses, and tools to build your skills and knowledge.</p>
+      </article>
+      <article class="step-card" tabindex="0">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Join the Community</h3>
+        <p class="step-desc">Connect with global creators, collaborate on projects, and attend workshops.</p>
+      </article>
+      <article class="step-card" tabindex="0">
+        <div class="step-number">4</div>
+        <h3 class="step-title">Start Creating</h3>
+        <p class="step-desc">Use our marketing tools and innovation support to launch your ideas and grow.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Nexsora. All rights reserved. | Designed with ❤️ by Nexsora Team
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    menuToggle.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navLinks.classList.toggle('open');
+      }
+    });
+  </script>
+</body>
+</html>

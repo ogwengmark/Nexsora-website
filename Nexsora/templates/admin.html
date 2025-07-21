@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Panel - Upload Logo</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #142439;
+      color: #d0e7f9;
+      padding: 2rem;
+    }
+    h1 {
+      color: #00d8ff;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    input[type="file"] {
+      margin-bottom: 1rem;
+    }
+    button {
+      background-color: #00d8ff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      color: #142439;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #3eefff;
+    }
+    #preview {
+      margin-top: 1rem;
+      max-width: 200px;
+      border: 2px solid #00d8ff;
+      border-radius: 12px;
+    }
+    .message {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #4ee3f1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Admin Panel - Upload Logo</h1>
+  
+  <form id="logoForm">
+    <label for="logoInput">Select a new logo image (PNG, JPG, SVG):</label>
+    <input type="file" id="logoInput" accept="image/*" required />
+    <button type="submit">Save Logo</button>
+  </form>
+
+  <img id="preview" src="" alt="Logo Preview" style="display:none;" />
+
+  <div class="message" id="message"></div>
+
+  <script>
+    const logoInput = document.getElementById('logoInput');
+    const preview = document.getElementById('preview');
+    const message = document.getElementById('message');
+    const logoForm = document.getElementById('logoForm');
+
+    // Show preview when image is selected
+    logoInput.addEventListener('change', () => {
+      const file = logoInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+      message.textContent = '';
+    });
+
+    // Save base64 logo to localStorage on submit
+    logoForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const file = logoInput.files[0];
+      if (!file) {
+        message.textContent = 'Please select an image first.';
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          localStorage.setItem('nexsoraLogo', e.target.result);
+          message.style.color = '#4ee3f1';
+          message.textContent = 'Logo saved successfully! Refresh your site to see changes.';
+        } catch(err) {
+          message.style.color = '#ff6b6b';
+          message.textContent = 'Error saving logo: ' + err.message;
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // On page load, show current logo preview if saved
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLogo = localStorage.getItem('nexsoraLogo');
+      if (savedLogo) {
+        preview.src = savedLogo;
+        preview.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>

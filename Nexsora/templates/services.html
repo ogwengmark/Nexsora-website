@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXSORA – Services</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #111;
+      color: #fff;
+    }
+
+    .services {
+      background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.85);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00ffff;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #00ffff;
+    }
+
+    .content {
+      padding: 8rem 2rem 4rem;
+      max-width: 1100px;
+      margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .content h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 6px #000;
+      color: #00ffff;
+    }
+
+    .sector {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+    }
+
+    .sector h3 {
+      margin-bottom: 0.8rem;
+      color: #00ffff;
+    }
+
+    .sector ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .sector ul li {
+      margin: 0.5rem 0;
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+<body>
+  <section class="services animate">
+    <nav class="navbar">
+      <h1 class="logo">NEXSORA</h1>
+      
+    </nav>
+
+    <div class="content">
+      <h2>🌟 Our Services by Sector</h2>
+
+      <div class="sector">
+        <h3>🌐 Web & Software Development</h3>
+        <ul>
+          <li>💻 Website Design & Development</li>
+          <li>🧩 Web Applications</li>
+          <li>📱 Mobile App Development</li>
+        </ul>
+      </div>
+
+      <div class="sector">
+        <h3>🤖 Artificial Intelligence & Automation</h3>
+        <ul>
+          <li>🧠 AI Solutions</li>
+          <li>🤖 Chatbot Integration</li>
+          <li>🔄 Process Automation</li>
+        </ul>
+      </div>
+
+      <div class="sector">
+        <h3>🛡️ Cybersecurity</h3>
+        <ul>
+          <li>🔐 Security Audits</li>
+          <li>🛡️ Data Protection</li>
+          <li>🔍 Threat Monitoring</li>
+        </ul>
+      </div>
+
+      <div class="sector">
+        <h3>🎨 Design & Experience</h3>
+        <ul>
+          <li>🎨 UI/UX Design</li>
+          <li>🖼️ Brand Identity</li>
+          <li>🧪 Prototype Testing</li>
+        </ul>
+      </div>
+
+      <div class="sector">
+        <h3>📈 Marketing & Strategy</h3>
+        <ul>
+          <li>📢 Digital Marketing</li>
+          <li>📊 SEO & Analytics</li>
+          <li>📬 Email Campaigns</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

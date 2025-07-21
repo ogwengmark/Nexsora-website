@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Verify Phone Number - Sora Community</title>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #38bdf8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0; padding: 0;
+    user-select: none;
+  }
+  form {
+    background: rgba(11,18,32,0.8);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 320px;
+    box-shadow: 0 0 15px #38bdf8;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  label {
+    font-weight: 600;
+  }
+  input[type="number"] {
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+    text-align: center;
+  }
+  input[type="number"]:focus {
+    outline: 2px solid #38bdf8;
+    background: #142439;
+    color: #d0e7f9;
+  }
+  button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: #38bdf8;
+    color: #0f172a;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+  button:hover:not(:disabled) {
+    background-color: #0ea5e9;
+  }
+  button:disabled {
+    background-color: #0f172a;
+    color: #38bdf8;
+    cursor: default;
+  }
+  .timer {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  .resend {
+    color: #38bdf8;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    display: none;
+  }
+  .resend:hover {
+    text-decoration: underline;
+  }
+  .message {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  .error {
+    color: #ff4d4d;
+  }
+  .success {
+    color: #7fffd4;
+  }
+</style>
+</head>
+<body>
+  <form id="verifyForm" novalidate>
+    <h2 style="text-align:center; margin-bottom:1rem;">Verify Your Phone Number</h2>
+    <label for="code">Enter Verification Code</label>
+    <input type="number" id="code" name="code" maxlength="6" autocomplete="one-time-code" required />
+    <div class="timer" id="timer">Time Remaining: 01:00</div>
+    <div class="resend" id="resend">Resend Code</div>
+    <button type="submit" id="submitBtn" disabled>Verify</button>
+    <p id="msg" class="message" aria-live="assertive"></p>
+  </form>
+
+<script>
+  const verifyForm = document.getElementById('verifyForm');
+  const codeInput = document.getElementById('code');
+  const timerEl = document.getElementById('timer');
+  const resendEl = document.getElementById('resend');
+  const submitBtn = document.getElementById('submitBtn');
+  const msg = document.getElementById('msg');
+
+  let countdown;
+  let timeLeft = 60;
+
+  function startTimer() {
+    timeLeft = 60;
+    timerEl.textContent = `Time Remaining: 01:00`;
+    resendEl.style.display = 'none';
+    submitBtn.disabled = true;
+    codeInput.value = '';
+    codeInput.disabled = false;
+    msg.textContent = '';
+    msg.className = 'message';
+
+    countdown = setInterval(() => {
+      timeLeft--;
+      timerEl.textContent = `Time Remaining: ${formatTime(timeLeft)}`;
+      if(timeLeft <= 0) {
+        clearInterval(countdown);
+        timerEl.textContent = 'Time expired. Please resend the code.';
+        resendEl.style.display = 'block';
+        submitBtn.disabled = true;
+        codeInput.disabled = true;
+      }
+    }, 1000);
+  }
+
+  function formatTime(seconds) {
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  function sendCode() {
+    const generatedCode = Math.floor(100000 + Math.random() * 900000);
+    sessionStorage.setItem('verificationCode', generatedCode.toString());
+
+    const fullPhone = sessionStorage.getItem('fullPhoneNumber') || '[Unknown Number]';
+    alert(`Verification code sent to ${fullPhone} (simulated): ${generatedCode}`);
+  }
+
+  resendEl.addEventListener('click', () => {
+    sendCode();
+    startTimer();
+  });
+
+  codeInput.addEventListener('input', () => {
+    submitBtn.disabled = codeInput.value.trim().length !== 6;
+    msg.textContent = '';
+    msg.className = 'message';
+  });
+
+  verifyForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const enteredCode = codeInput.value.trim();
+    const storedCode = sessionStorage.getItem('verificationCode');
+
+    if (enteredCode === storedCode) {
+      msg.textContent = 'Phone number verified successfully! 🎉';
+      msg.className = 'message success';
+      submitBtn.disabled = true;
+      codeInput.disabled = true;
+      resendEl.style.display = 'none';
+      clearInterval(countdown);
+      timerEl.textContent = '';
+
+      setTimeout(() => {
+        alert('Registration Complete! Redirecting to Dashboard...');
+        sessionStorage.clear();
+        window.location.href = 'dashboard.html'; // update as needed
+      }, 1500);
+    } else {
+      msg.textContent = 'Incorrect verification code. Please try again.';
+      msg.className = 'message error';
+    }
+  });
+
+  window.onload = () => {
+    const phone = sessionStorage.getItem('fullPhoneNumber');
+    if (!phone) {
+      alert('No phone number found. Redirecting back to registration.');
+      window.location.href = 'create-account.html';
+      return;
+    }
+    sendCode();
+    startTimer();
+  }
+</script>
+</body>
+</html>

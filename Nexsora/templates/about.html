@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXSORA – About</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Full page background */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f0f0;
+    }
+    /* Darker overlay for better contrast */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: -1;
+      pointer-events: none;
+    }
+    /* Content wrapper with solid-ish background and padding */
+    .content-wrapper {
+      max-width: 900px;
+      margin: 5rem auto;
+      padding: 2.5rem 3.5rem;
+      background: rgba(0,0,0,0.85);
+      border-radius: 12px;
+      box-shadow: 0 0 30px #00ffccbb;
+      color: #fff;
+      text-shadow: 0 0 5px rgba(0,0,0,0.7);
+    }
+    nav.navbar {
+      background: rgba(0,0,0,0.85);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      color: #00ffcc;
+      text-shadow: 0 0 3px rgba(0,255,204,0.6);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #00ffcc;
+      letter-spacing: 2.5px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.75rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: #a0f7e6;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.25rem 0.5rem;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      border-bottom: 3px solid transparent;
+      text-shadow: 0 0 3px rgba(0,255,204,0.6);
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: #00ffd2;
+      border-bottom: 3px solid #00ffd2;
+      outline: none;
+      text-shadow: 0 0 8px #00ffd2;
+    }
+    h2 {
+      color: #00ffc9;
+      margin-bottom: 1.25rem;
+      text-shadow: 0 0 15px #00ffc9cc;
+    }
+    h3 {
+      margin: 2.25rem 0 1.25rem;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #00ffc9;
+      text-shadow: 0 0 10px #00ffc9cc;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      color: #00ffcc;
+      text-shadow: 0 0 8px rgba(0,255,204,0.6);
+    }
+    ul li {
+      margin-bottom: 0.85rem;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <h1 class="logo">NEXSORA</h1>
+    <ul>
+      
+  </nav>
+
+  <section class="about animate">
+    <div class="content-wrapper">
+      <h2>About the Developer</h2>
+      <p>
+        At NEXSORA, innovation meets dedication. I'm a passionate full-stack developer, deeply rooted in the latest web technologies, ethical hacking, and automation.
+        With a relentless curiosity, I thrive on building intelligent systems that not only solve problems but also create impactful digital experiences.
+        My mission is to empower individuals and businesses by transforming ideas into scalable, secure, and stunning solutions.
+      </p>
+      <p>
+        Every line of code I write is a step toward a smarter future — one where technology is accessible, powerful, and a force for good.
+        Whether crafting seamless user interfaces or fortifying cybersecurity defenses, I am committed to excellence, creativity, and continuous learning.
+      </p>
+
+      <h3>About the Founder</h3>
+      <p>
+        From a young age, I found myself captivated by the endless possibilities of programming and coding.
+        Inspired by visionaries like Elon Musk and Mark Zuckerberg, I dreamed of shaping the future through technology.
+        With unwavering support from my father, who believed deeply in my passion and made every effort to nurture my learning in programming, coding, and ethical hacking,
+        I embarked on a journey of discovery and innovation.
+        Today, I stand committed to pioneering smart solutions and empowering the next generation — driven by a relentless desire to innovate and build a better tomorrow.
+      </p>
+
+      <h3>About NEXSORA</h3>
+      <p>
+        Founded by <strong>Mark Samuel Ogweng</strong>, NEXSORA is more than a company — it's a vision.
+        Our dynamic team is passionate about pioneering advancements in:
+      </p>
+      <ul>
+        <li>• Cutting-edge Web Development</li>
+        <li>• Artificial Intelligence & Intelligent Automation</li>
+        <li>• Robust Cybersecurity Solutions</li>
+        <li>• Creative Digital Marketing Strategies</li>
+        <li>• Elegant and User-Centered Design</li>
+      </ul>
+      <p>
+        At NEXSORA, we believe in pushing boundaries, embracing challenges, and creating technology that inspires and transforms.
+        Join us on this journey to shape the future, one innovation at a time.
+      </p>
+    </div>
+  </section>
+</body>
+</html>
